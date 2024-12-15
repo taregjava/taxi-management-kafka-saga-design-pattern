@@ -16,11 +16,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class CabListener {
     private final CabService cabService;
-    private KafkaTemplate<String, UpdateDriverStatusEvent> updateDriverStatusEventKafkaTemplate;
+   // private KafkaTemplate<String, UpdateDriverStatusEvent> updateDriverStatusEventKafkaTemplate;
     @Autowired
-    public CabListener(CabService cabService, KafkaTemplate<String, UpdateDriverStatusEvent> updateDriverStatusEventKafkaTemplate){
+    public CabListener(CabService cabService){
         this.cabService = cabService;
-        this.updateDriverStatusEventKafkaTemplate = updateDriverStatusEventKafkaTemplate;
+       // this.updateDriverStatusEventKafkaTemplate = updateDriverStatusEventKafkaTemplate;
     }
 
     @KafkaListener(topics = "add-cab-event", groupId = "driver-group")
@@ -47,7 +47,7 @@ public class CabListener {
                 .driverId(cab.getDriverId())
                 .driverStatus(driverStatus)
                 .build();
-        updateDriverStatusEventKafkaTemplate.send("update-driver-event", statusEvent);
+        //updateDriverStatusEventKafkaTemplate.send("update-driver-event", statusEvent);
     }
 
     private Cab saveCabDetails(CabEvent cabEvent, CommonStatus cabStatus) {

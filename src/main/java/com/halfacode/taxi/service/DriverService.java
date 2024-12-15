@@ -19,12 +19,12 @@ import java.util.UUID;
 public class DriverService {
 
     private final DriverRepository driverRepository;
-    private KafkaTemplate<String, CabEvent> kafkaTemplate;
+  //  private KafkaTemplate<String, CabEvent> kafkaTemplate;
 
     @Autowired
-    public DriverService(DriverRepository driverRepository, KafkaTemplate<String, CabEvent> kafkaTemplate) {
+    public DriverService(DriverRepository driverRepository) {
         this.driverRepository = driverRepository;
-        this.kafkaTemplate = kafkaTemplate;
+       // this.kafkaTemplate = kafkaTemplate;
     }
 
     public List<Driver> getAllDrivers() {
@@ -49,7 +49,7 @@ public class DriverService {
                 .cabType(driverDTO.getCabDTO().getCabType())
                 .registrationNumber(driverDTO.getCabDTO().getRegistrationNumber())
                 .build();
-        kafkaTemplate.send("add-cab-event", cabEvent);
+        //kafkaTemplate.send("add-cab-event", cabEvent);
         return "Driver details: "+driver.getDriverId()+" processed.";
     }
 

@@ -8,12 +8,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class PaymentProducer {
 
-    @Autowired
-    private KafkaTemplate<String, PaymentMessage> kafkaTemplate;
+  //  @Autowired
+   // private KafkaTemplate<String, PaymentMessage> kafkaTemplate;
 
     private static final String TOPIC = "payment_transactions";
 
     public void sendPayment(PaymentMessage message) {
-        kafkaTemplate.send(TOPIC, message);
+      //  kafkaTemplate.send(TOPIC, message);
     }
 }
